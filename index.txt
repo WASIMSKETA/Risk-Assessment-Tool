@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Risk Assessment Form</title>
+<style>
+    body { font-family: Arial, sans-serif; }
+    .container { max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ccc; }
+    .question { margin-bottom: 10px; }
+    .result { margin-top: 20px; font-size: 18px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Risk Assessment Tool</h2>
+    
+    <!-- Questions and dropdowns -->
+    <form id="riskForm">
+        <!-- Sample question -->
+        <div class="question">
+            <label for="financialHealth">Financial Health:</label>
+            <select id="financialHealth" name="financialHealth" onchange="updateScore()">
+                <option value="0">Select an option</option>
+                <option value="90">Excellent (750 or higher)</option>
+                <option value="80">Good (650 to 749)</option>
+                <option value="60">Fair (550 to 649)</option>
+                <option value="30">Poor (below 550)</option>
+            </select>
+        </div>
+        <!-- Additional questions can be added similarly -->
+    </form>
+    
+    <!-- Display the total score -->
+    <div class="result">Total Score: <span id="totalScore">0</span></div>
+</div>
+
+<script>
+function updateScore() {
+    var form = document.getElementById('riskForm');
+    var total = 0;
+    
+    // Sum the values of selected options
+    for (var i = 0; i < form.length; i++) {
+        if (form[i].type === 'select-one') {
+            total += parseInt(form[i].value);
+        }
+    }
+    
+    // Display the total score
+    document.getElementById('totalScore').textContent = total;
+}
+</script>
+</body>
+</html>
